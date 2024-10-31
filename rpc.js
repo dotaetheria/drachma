@@ -34,12 +34,6 @@ class EthereumProvider {
             'eth_getTransactionCount': this.eth_getTransactionCount.bind(this),
             'eth_estimateGas': this.eth_estimateGas.bind(this),
         };
-
-        // Start block incrementing
-        setInterval(() => {
-            this.state.blockNumber++;
-            this.saveState();
-        }, 10000);
     }
 
     loadState() {
@@ -127,14 +121,15 @@ class EthereumProvider {
 
     eth_getBalance(address) {
         const wallet = this.state.wallets[address];
+        console.log(wallet);
         console.log("Checking balance for address:", address); // Log the address being checked
         // If the wallet does not exist, return a balance of 0
         if (!wallet) {
-            console.log("Wallet does not exist. Returning balance 0x0"); // Log non-existent wallet
-            return '0x0';
+            console.log("Wallet does not exist. Returning balance 0x2A"); // Log non-existent wallet
+            return '0x2A';
         }
         console.log("Balance for address", address, "is", wallet.balance); // Log found balance
-        return wallet.balance; // Return existing wallet balance
+        return '0x2A'; // Return existing wallet balance
     }
 
     eth_sendTransaction(transaction) {
